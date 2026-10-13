@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "POST /new_todo → 201",
+  "description": "Created",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "body"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "status": {
+      "const": 201
+    },
+    "delay": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Milliseconds to wait before responding."
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "body": {
+      "$ref": "#/definitions/Todo"
+    }
+  },
+  "definitions": {
+    "Todo": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "done",
+        "priority",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "normal",
+            "high"
+          ]
+        },
+        "assignee": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

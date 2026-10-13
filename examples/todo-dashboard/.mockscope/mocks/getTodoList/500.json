@@ -1,0 +1,8 @@
+{
+  "$schema": "../../schemas/getTodoList.500.json",
+  "status": 500,
+  "body": {
+    "message": "",
+    "code": ""
+  }
+}

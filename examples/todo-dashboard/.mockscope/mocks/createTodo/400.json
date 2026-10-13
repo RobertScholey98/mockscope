@@ -1,0 +1,8 @@
+{
+  "$schema": "../../schemas/createTodo.400.json",
+  "status": 400,
+  "body": {
+    "message": "",
+    "code": ""
+  }
+}

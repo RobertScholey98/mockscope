@@ -1,0 +1,12 @@
+{
+  "name": "mockscope-monorepo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "dev:example": "pnpm --filter todo-dashboard dev",
+    "dev:desktop": "pnpm --filter @mockscope/desktop dev"
+  },
+  "packageManager": "pnpm@12.8.1"
+}

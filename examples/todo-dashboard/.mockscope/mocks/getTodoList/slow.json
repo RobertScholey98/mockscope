@@ -1,0 +1,6 @@
+{
+  "$schema": "../../schemas/getTodoList.200.json",
+  "status": 200,
+  "delay": 3000,
+  "body": []
+}

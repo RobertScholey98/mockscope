@@ -1,0 +1,133 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Todo API", "version": "1.0.0" },
+  "servers": [{ "url": "/api" }],
+  "paths": {
+    "/todo_list": {
+      "get": {
+        "operationId": "getTodoList",
+        "summary": "All todos",
+        "tags": ["todos"],
+        "responses": {
+          "200": {
+            "description": "The todo list",
+            "content": {
+              "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Todo" } } }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+          }
+        }
+      }
+    },
+    "/recent_additions": {
+      "get": {
+        "operationId": "getRecentAdditions",
+        "summary": "Todos added in the last week",
+        "tags": ["todos"],
+        "responses": {
+          "200": {
+            "description": "Recently added todos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["since", "items"],
+                  "properties": {
+                    "since": { "type": "string", "format": "date-time" },
+                    "items": { "type": "array", "items": { "$ref": "#/components/schemas/Todo" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/new_todo": {
+      "post": {
+        "operationId": "createTodo",
+        "summary": "Add a todo",
+        "tags": ["todos"],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/NewTodo" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Todo" } } }
+          },
+          "400": {
+            "description": "Validation failed",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+          }
+        }
+      }
+    },
+    "/update_todo/{id}": {
+      "patch": {
+        "operationId": "updateTodo",
+        "summary": "Update a todo",
+        "tags": ["todos"],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/TodoPatch" } } }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Todo" } } }
+          },
+          "404": {
+            "description": "No such todo",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Todo": {
+        "type": "object",
+        "required": ["id", "title", "done", "priority", "createdAt"],
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "done": { "type": "boolean" },
+          "priority": { "type": "string", "enum": ["low", "normal", "high"] },
+          "assignee": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "NewTodo": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "priority": { "type": "string", "enum": ["low", "normal", "high"] }
+        }
+      },
+      "TodoPatch": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "done": { "type": "boolean" },
+          "priority": { "type": "string", "enum": ["low", "normal", "high"] }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": { "type": "string" },
+          "code": { "type": "string" }
+        }
+      }
+    }
+  }
+}

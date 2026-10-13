@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/updateTodo.200.json",
+  "status": 200,
+  "body": {
+    "id": 0,
+    "title": "",
+    "done": false,
+    "priority": "low",
+    "assignee": "",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  }
+}

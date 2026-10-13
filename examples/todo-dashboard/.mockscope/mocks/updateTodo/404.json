@@ -1,0 +1,8 @@
+{
+  "$schema": "../../schemas/updateTodo.404.json",
+  "status": 404,
+  "body": {
+    "message": "",
+    "code": ""
+  }
+}

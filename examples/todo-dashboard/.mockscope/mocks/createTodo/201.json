@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/createTodo.201.json",
+  "status": 201,
+  "body": {
+    "id": 0,
+    "title": "",
+    "done": false,
+    "priority": "low",
+    "assignee": "",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  }
+}

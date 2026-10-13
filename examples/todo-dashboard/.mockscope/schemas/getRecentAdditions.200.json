@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GET /recent_additions → 200",
+  "description": "Recently added todos",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "body"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "status": {
+      "const": 200
+    },
+    "delay": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Milliseconds to wait before responding."
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "since",
+        "items"
+      ],
+      "properties": {
+        "since": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Todo"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Todo": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "done",
+        "priority",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "normal",
+            "high"
+          ]
+        },
+        "assignee": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

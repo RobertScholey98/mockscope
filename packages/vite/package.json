@@ -1,0 +1,26 @@
+{
+  "name": "@mockscope/vite",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/plugin.ts",
+    "./client": { "types": "./src/client.d.ts" }
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@mockscope/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "msw": "^3.0.0",
+    "vite": ">=6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "msw": "^3.0.3",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.4"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schemas/getTodoList.200.json",
+  "status": 200,
+  "body": [
+    { "id": 101, "title": "Mocked: review Q3 dashboard copy", "done": false, "priority": "high", "assignee": "Robert", "createdAt": "2026-10-10T09:00:00.000Z" },
+    { "id": 102, "title": "Mocked: chase design for empty states", "done": true, "priority": "normal", "assignee": null, "createdAt": "2026-10-11T09:00:00.000Z" },
+    { "id": 103, "title": "Mocked: very long title that should wrap nicely inside the list row without breaking the layout of the card", "done": false, "priority": "low", "assignee": null, "createdAt": "2026-10-12T09:00:00.000Z" }
+  ]
+}
